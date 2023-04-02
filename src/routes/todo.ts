@@ -7,8 +7,7 @@ export const todoSchema = z.object({ id: z.string(), text: z.string(), value: z.
 export type Todo = z.infer<typeof todoSchema>;
 
 export const todoRoutes = {
-  getAll: createRoute("post", "/todos/getAll", {
-    input: z.object({}),
+  getAll: createRoute("get", "/todos/getAll", {
     output: z.array(z.object({ id: z.string(), text: z.string(), value: z.boolean() })),
     procedure: async () => {
       const todos = await prisma.todo.findMany({});
